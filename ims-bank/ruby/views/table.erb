@@ -1,0 +1,31 @@
+<p>
+  <table border="1" cellspacing="0" cellpadding="0" width>
+    <tr>
+      <th class="space">Customer's Name</th>
+      <th>Checking Account Balance</th>
+      <th>Savings Account Balance</th>
+      <th>Total Balance</th>
+    </tr>
+    <% @customer_accounts.each do |customer, accounts| %>
+      <% unless customer.nil? %>
+      <% checking_amount = accounts['checking'].nil? ? 0 : accounts['checking']['total'] %>
+      <% savings_amount = accounts['savings'].nil? ? 0 : accounts['savings']['total'] %>
+      <tr>
+        <td><%=customer%></td>
+        <td><%="$#{checking_amount}" %></td>
+        <td><%="$#{savings_amount}" %></td>
+        <td><%="$#{checking_amount + savings_amount}"%></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</p>
+
+<style>
+th{
+  padding: 4px;
+}
+td {
+  padding: 4px;
+}
+</style>
